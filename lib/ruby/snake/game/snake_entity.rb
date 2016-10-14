@@ -37,10 +37,6 @@ module Ruby
       end
 
       def update_movement_velocity
-        if (Gosu::milliseconds % 20) == 1
-          puts @vel_x.to_s
-          puts @vel_y.to_s
-        end
         @vel_x = Gosu::offset_x(@rotation, @speed)
         @vel_y = Gosu::offset_y(@rotation, @speed)
       end
