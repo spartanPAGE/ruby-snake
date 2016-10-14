@@ -1,4 +1,4 @@
-https://travis-ci.org/spartanPAGE/ruby-snake.svg?branch=master
+[![Build Status](https://travis-ci.org/spartanPAGE/ruby-snake.svg?branch=master)](https://travis-ci.org/spartanPAGE/ruby-snake)
 # Ruby::Snake
 
 This repo contains code for my ruby's snake implementation using the Gosu library.
