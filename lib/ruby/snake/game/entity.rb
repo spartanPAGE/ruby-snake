@@ -23,7 +23,7 @@ module Ruby
         def update
           @pos_x += @vel_x*Game::delta_time
           @pos_y += @vel_y*Game::delta_time
-          @rotation += @rotation_vel*Gosu::milliseconds
+          @rotation += @rotation_vel*Game::delta_time
         end
       end
     end

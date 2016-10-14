@@ -1,7 +1,7 @@
 require 'gosu'
 require 'ruby/helper/resources/loader'
 require 'ruby/snake/game/entity'
-
+require 'ruby/snake/game/delta_time'
 
 module Ruby
   module Snake
@@ -26,39 +26,32 @@ module Ruby
         @rotation += @torsion_angle
       end
 
-      def accelerate
-        @speed += 0.1
-
-      end
-
-      def decelerate
-        @speed -= 0.1
-        if @speed < 0
-          @speed = 0
-        end
-      end
-
       def update
+        handle_keyboard
+        update_movement_velocity
+        super
+      end
+
+      def draw
+        @@head.draw_rot(@pos_x, @pos_y, @z_order, @rotation)
+      end
+
+      def update_movement_velocity
+        if (Gosu::milliseconds % 20) == 1
+          puts @vel_x.to_s
+          puts @vel_y.to_s
+        end
+        @vel_x = Gosu::offset_x(@rotation, @speed)
+        @vel_y = Gosu::offset_y(@rotation, @speed)
+      end
+
+      def handle_keyboard
         if Gosu::button_down? Gosu::KbLeft or Gosu::button_down? Gosu::GpLeft then
           turn_left
         end
         if Gosu::button_down? Gosu::KbRight or Gosu::button_down? Gosu::GpRight then
           turn_right
         end
-        if Gosu::button_down? Gosu::KbUp or Gosu::button_down? Gosu::GpUp then
-          accelerate
-        end
-        if Gosu::button_down? Gosu::KbDown or Gosu::button_down? Gosu::GpDown then
-          decelerate
-        end
-
-        @vel_x = Gosu::offset_x(@rotation, @speed)
-        @vel_y = Gosu::offset_y(@rotation, @speed)
-        super
-      end
-
-      def draw
-        @@head.draw_rot(@pos_x, @pos_y, @z_order, @rotation)
       end
     end
   end
