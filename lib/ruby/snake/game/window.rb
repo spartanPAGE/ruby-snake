@@ -8,7 +8,7 @@ module Ruby
         def initialize
           super(640, 480)
           self.caption = "Snake game"
-          @snake = SnakeHead.new(pos_x: 100, pos_y: 100, vel_x: 1, vel_y: 1, rotation_vel: 1.4)
+          @snake = SnakeHead.new(pos_x: 100, pos_y: 100, speed: 0.1, angle: 2)
         end
 
         def update
