@@ -1,3 +1,5 @@
+require 'ruby/snake/game/delta_time'
+
 module Ruby
   module Snake
     module Game
@@ -19,9 +21,9 @@ module Ruby
         end
 
         def update
-          @pos_x += @vel_x
-          @pos_y += @vel_y
-          @rotation += @rotation_vel
+          @pos_x += @vel_x*Game::delta_time
+          @pos_y += @vel_y*Game::delta_time
+          @rotation += @rotation_vel*Gosu::milliseconds
         end
       end
     end
