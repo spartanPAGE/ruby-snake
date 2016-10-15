@@ -5,7 +5,10 @@ describe Ruby::Snake::Game::AngleBasedEntity do
   AngleBasedEntity = Ruby::Snake::Game::AngleBasedEntity
 
   context 'is created properly' do
-    let(:entity) { AngleBasedEntity.new(pos_x: 10, pos_y: 15, angle: 5, speed: 1) }
+    let(:entity) do
+      AngleBasedEntity.new(pos: [10, 15], angle: 5, speed: 1)
+    end
+
     it 'has proper position' do
       expect(entity.pos_x).to eq(10)
       expect(entity.pos_y).to eq(15)

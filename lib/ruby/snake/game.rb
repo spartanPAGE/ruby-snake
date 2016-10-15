@@ -7,7 +7,7 @@ require 'ruby/snake/game/window'
 
 module Ruby
   module Snake
-
+    # Game entry point
     class GameApp
       def initialize
         @game_window = Game::Window.new
@@ -17,6 +17,5 @@ module Ruby
         @game_window.show
       end
     end
-
   end
 end

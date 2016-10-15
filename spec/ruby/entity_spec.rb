@@ -5,7 +5,7 @@ describe Ruby::Snake::Game::Entity do
   Entity = Ruby::Snake::Game::Entity
 
   context 'is created properly' do
-    let(:entity) { Entity.new(pos_x: 10, pos_y: 15, vel_x: 1, vel_y: 2) }
+    let(:entity) { Entity.new(pos: [10, 15], vel: [1, 2]) }
     it 'has proper position' do
       expect(entity.pos_x).to eq(10)
       expect(entity.pos_y).to eq(15)
@@ -18,7 +18,7 @@ describe Ruby::Snake::Game::Entity do
   end
 
   context 'moves properly' do
-    let(:entity) { Entity.new(pos_x: 0, pos_y: 0, vel_x: 10, vel_y: -10) }
+    let(:entity) { Entity.new(pos: [0, 0], vel: [10, -10]) }
 
     it 'performs first step with 2ms' do
       entity.update -> { 2 }

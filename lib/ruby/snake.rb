@@ -1,1 +1,1 @@
-require "ruby/snake/version"
+require 'ruby/snake/version'
