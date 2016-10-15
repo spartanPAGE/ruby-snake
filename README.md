@@ -23,7 +23,8 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-  $ ruby bin/application.rb
+  $ cd bin
+  $ ruby application.rb
 ```
 
 ## Development
