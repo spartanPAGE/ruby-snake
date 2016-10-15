@@ -25,9 +25,9 @@ module Ruby
           @rotation += @torsion_angle
         end
 
-        def update
+        def update(delta_time = -> { Game::Time.delta })
           update_movement_velocity
-          super
+          super delta_time
         end
 
         def update_movement_velocity
