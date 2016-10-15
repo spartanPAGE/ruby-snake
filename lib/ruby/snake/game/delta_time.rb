@@ -1,16 +1,25 @@
+require 'ruby/helper/time/time_difference_calculator'
+
 module Ruby
   module Snake
     module Game
-      @@actual_time = 0
-      @@last_time = 0
+      # singleton helper with delta calculus
+      class Time
+        class << self
+          def calculator
+            @calculator ||= Helper::Time::TimeDifferenceCalculator.new
+          end
 
-      def self.delta_time
-        @@actual_time - @@last_time
-      end
+          def delta
+            calculator.delta
+          end
 
-      def self.update_delta_time(milis)
-        @@last_time = @@actual_time
-        @@actual_time = milis
+          def update(time)
+            calculator.update time
+          end
+
+          private_class_method :new
+        end
       end
     end
   end

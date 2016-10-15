@@ -19,7 +19,7 @@ module Ruby
         end
 
         def update
-          Game.update_delta_time(Gosu.milliseconds)
+          Game::Time.update Gosu.milliseconds
           @snake.update
         end
 
