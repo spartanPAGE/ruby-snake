@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/spartanPAGE/ruby-snake.svg?branch=master)](https://travis-ci.org/spartanPAGE/ruby-snake)
+[![Build Status](https://travis-ci.org/spartanPAGE/ruby-snake.svg?branch=master)](https://travis-ci.org/spartanPAGE/ruby-snake) [![Code Climate](https://codeclimate.com/github/spartanPAGE/ruby-snake/badges/gpa.svg)](https://codeclimate.com/github/spartanPAGE/ruby-snake) [![Test Coverage](https://codeclimate.com/github/spartanPAGE/ruby-snake/badges/coverage.svg)](https://codeclimate.com/github/spartanPAGE/ruby-snake/coverage) [![Issue Count](https://codeclimate.com/github/spartanPAGE/ruby-snake/badges/issue_count.svg)](https://codeclimate.com/github/spartanPAGE/ruby-snake)
 # Ruby::Snake
 
 This repo contains code for my ruby's snake implementation using the Gosu library.

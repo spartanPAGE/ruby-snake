@@ -4,3 +4,4 @@ source 'http://rubygems.org'
 gemspec
 
 gem 'gosu', '~> 0.10.6'
+gem "codeclimate-test-reporter", group: :test, require: nil

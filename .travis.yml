@@ -2,23 +2,18 @@ sudo: required
 dist: trusty
 env:
   global:
-    - DISPLAY=":99.0"
+  - DISPLAY=":99.0"
+  - secure: aRaufHqp/sYamAUXm516jVQ4zMFgRRWUovDOaZOgFdjyUwDC9C/ozSjvLA1fhxJmDSNehSMrlwXtnsuJduvZfJB6NoLiQzbTy6hGbDdKzF/lHwieFzJ3eDK4f5RmMuejwAbFv3VKnVhzJm83PjLAJ6oCNLu+u4zahr4mmVhe2OB9o9m9sUEi1yzLWaz8KDwCAlBckgz74ai//XCd5WWzEONmQn20tIn7z4qakEjw+LlKxYxiC+NxVMzzFK2AniKPTnSt97ue7a9dza07nmPYzU3JnYRbegEsFx5DWgz43ThSslrgIw7qL2lC1O1lElCYXfb87uWP3MoxG3aV9ZMazgf/D+Mp9696Y28gorUH+R4xBuDfznl1nu1Lm0kgXQlX8utE6hyhcnyzF4Qsez1vwJEd9An0C27miPzJr2dqsQ2PI6CQvmY4rX9bUbm+OCc6Nqekl5zDII4f6t9Nw8hNdMgv5rwB7A5HG6PaRaaK195jbQt1wprpoB/xaUxEio/eT3j2d1TeviJdysqHVWj8wcZv4vx81+e1RyPT45LgSgMPA3PNYB/QSlNDYMECW1Z+FMVd02Bh4acCq7znprGk1d12kRt72MmMT+WX4ADfDWvdRX1Naq6UCk4neV5a6M7KPmqxt1hnUpxaD08VDQkOMo0qAE27hFoMFkm5XT4BAW0=
 language: ruby
 rvm:
-  #- 2.1
-  #- 2.2
-  - 2.3.0
-  #- rbx-2
-  #- ruby-head
+- 2.3.0
 matrix:
-  #allow_failures:
-  #  - rvm: rbx-2
-  #  - rvm: ruby-head
   fast_finish: true
 before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq -y build-essential libsdl2-dev libsdl2-ttf-dev libpango1.0-dev libgl1-mesa-dev libfreeimage-dev libopenal-dev libsndfile-dev
+- sudo apt-get update -qq
+- sudo apt-get install -qq -y build-essential libsdl2-dev libsdl2-ttf-dev libpango1.0-dev
+  libgl1-mesa-dev libfreeimage-dev libopenal-dev libsndfile-dev
 before_script:
-  - sh -e /etc/init.d/xvfb start
+- sh -e /etc/init.d/xvfb start
 after_script:
 - sh -e /ext/init.d/xvfb stop
