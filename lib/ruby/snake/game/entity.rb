@@ -20,10 +20,10 @@ module Ruby
           @rotation_vel = rotation_vel
         end
 
-        def update
-          @pos_x += @vel_x*Game::delta_time
-          @pos_y += @vel_y*Game::delta_time
-          @rotation += @rotation_vel*Game::delta_time
+        def update(delta_time = -> { Game::delta_time })
+          @pos_x += @vel_x*delta_time.call
+          @pos_y += @vel_y*delta_time.call
+          @rotation += @rotation_vel*delta_time.call
         end
       end
     end
