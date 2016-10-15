@@ -6,8 +6,13 @@ module Ruby
       # singleton helper with delta calculus
       class Time
         class << self
+          def reset
+            @calculator = Helper::Time::TimeDifferenceCalculator.new
+          end
+
           def calculator
-            @calculator ||= Helper::Time::TimeDifferenceCalculator.new
+            reset unless @calculator.nil?
+            @calculator
           end
 
           def delta
