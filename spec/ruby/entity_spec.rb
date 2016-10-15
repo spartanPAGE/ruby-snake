@@ -11,7 +11,7 @@ describe Ruby::Snake::Game::Entity do
       expect(entity.pos_y).to eq(15)
     end
 
-    it 'has propert velocity' do
+    it 'has proper velocity' do
       expect(entity.vel_x).to eq(1)
       expect(entity.vel_y).to eq(2)
     end
