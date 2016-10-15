@@ -11,7 +11,7 @@ module Ruby
           end
 
           def calculator
-            reset unless @calculator.nil?
+            reset if @calculator.nil?
             @calculator
           end
 

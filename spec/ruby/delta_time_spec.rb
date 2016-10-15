@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'ruby/helper/time/time_difference_calculator'
+require 'ruby/snake/game/delta_time'
 
 describe Ruby::Snake::Game::Time do
   let(:time) { Ruby::Snake::Game::Time }
@@ -20,6 +20,6 @@ describe Ruby::Snake::Game::Time do
 
   it('can flawlessly reset') do
     time.reset
-    expecT(time.delta).to eq 0
+    expect(time.delta).to eq 0
   end
 end
