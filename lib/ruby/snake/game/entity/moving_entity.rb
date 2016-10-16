@@ -1,5 +1,5 @@
 require 'ruby/snake/game/delta_time'
-require 'ruby/snake/game/entity'
+require 'ruby/snake/game/entity/entity'
 module Ruby
   module Snake
     module Game

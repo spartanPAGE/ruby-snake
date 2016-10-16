@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'gosu'
-require 'ruby/snake/game/angle_based_entity'
+require 'ruby/snake/game/entity/angle_based_entity'
 
 describe Ruby::Snake::Game::AngleBasedEntity do
   AngleBasedEntity = Ruby::Snake::Game::AngleBasedEntity
@@ -44,7 +44,7 @@ describe Ruby::Snake::Game::AngleBasedEntity do
       entity.update_movement_velocity
 
       expect(entity.vel_x).to eq(expected_vel_x)
-      expect(entity.vel_x).to eq(expected_vel_x)
+      expect(entity.vel_y).to eq(expected_vel_y)
     end
 
     it 'can update its position' do

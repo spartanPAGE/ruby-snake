@@ -1,6 +1,6 @@
 require 'gosu'
 require 'ruby/helper/resources/loader'
-require 'ruby/snake/game/angle_based_entity'
+require 'ruby/snake/game/entity/angle_based_entity'
 
 module Ruby
   module Snake

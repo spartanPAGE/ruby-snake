@@ -1,5 +1,5 @@
 require 'gosu'
-require 'ruby/snake/game/moving_entity'
+require 'ruby/snake/game/entity/moving_entity'
 
 module Ruby
   module Snake

@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'ruby/snake/game/moving_entity'
+require 'ruby/snake/game/entity/moving_entity'
 
 describe Ruby::Snake::Game::MovingEntity do
   Entity = Ruby::Snake::Game::MovingEntity
