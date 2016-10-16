@@ -1,27 +1,24 @@
 require 'ruby/snake/game/delta_time'
-
+require 'ruby/snake/game/entity/entity'
 module Ruby
   module Snake
     module Game
-      # Game::Entity provides:
-      # - position, velocity, rotation
+      # provides:
+      # - velocity for position and rotation
       # - update method which updates position and rotation based
       #   on velocity values
-      class Entity
-        attr_accessor :pos_x, :pos_y
+      class MovingEntity < Game::Entity
         attr_accessor :vel_x, :vel_y
-        attr_accessor :rotation
         attr_accessor :rotation_vel
 
         def initialize(pos: [0, 0],
                        vel: [0.0, 0.0],
                        rotation: 0.0, rotation_vel: 0.0)
-          @pos_x = pos[0]
-          @pos_y = pos[1]
           @vel_x = vel[0]
           @vel_y = vel[1]
-          @rotation = rotation
           @rotation_vel = rotation_vel
+
+          super(pos: pos, rotation: rotation)
         end
 
         def update(delta_time = -> { Game::Time.delta })

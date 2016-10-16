@@ -1,0 +1,5 @@
+Style/ClassVars:
+  Enabled: false
+
+Style/RescueModifier:
+  Enabled: false
