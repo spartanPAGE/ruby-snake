@@ -1,19 +1,20 @@
 require 'ruby/helper/resources/loader'
 require 'ruby/snake/game/entity/entity'
 require 'ruby/snake/game/collision/circle'
+require 'ruby/snake/game/consumable/consumable'
 
 module Ruby
   module Snake
     module Game
       module Bonuses
         # apple bonus (gives speed)
-        # TODO: extract Bonus and Consumable base classes/mixins
+        # TODO: extract Bonus base classe/mixin
         class Cherry < Game::Entity
           # TODO: get this resource from some kind of resource container
           @@image = Helper::Resource.load('res/cherry.bmp')
-          include Game::Collision::Circle
 
-          attr_reader :consumed
+          include Game::Collision::Circle
+          include Game::Consumable::Consumable
 
           def initialize(pos_x, pos_y)
             @diameter = @@image.height
@@ -22,25 +23,18 @@ module Ruby
           end
 
           def draw
-            return if consumed
-            # TODO: extract mixin for centered image drawing
-            @@image.draw(
-              @pos_x - @@image.width / 2,
-              @pos_y - @@image.height / 2,
-              -1
-            )
+            super do
+              # TODO: extract mixin for centered image drawing
+              @@image.draw(
+                @pos_x - @@image.width / 2,
+                @pos_y - @@image.height / 2,
+                -1
+              )
+            end
           end
 
           def collide(entity)
-            # TODO: move 'is consumed' testing to proper Consumable class/mixin
-            return if consumed
-            collides = entity.collide_circle(self) rescue false
-            on_collision(entity) if collides
-          end
-
-          def on_collision(entity)
-            @consumed = true
-            entity.apply(on_consumption_effects)
+            super { entity.collide_circle(self) }
           end
 
           def on_consumption_effects
