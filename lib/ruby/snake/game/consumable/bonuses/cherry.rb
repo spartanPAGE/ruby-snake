@@ -7,7 +7,9 @@ module Ruby
     module Game
       module Bonuses
         # apple bonus (gives speed)
+        # TODO: extract Bonus and Consumable base classes/mixins
         class Cherry < Game::Entity
+          # TODO: get this resource from some kind of resource container
           @@image = Helper::Resource.load('res/cherry.bmp')
           include Game::Collision::Circle
 
@@ -21,6 +23,7 @@ module Ruby
 
           def draw
             return if consumed
+            # TODO: extract mixin for centered image drawing
             @@image.draw(
               @pos_x - @@image.width / 2,
               @pos_y - @@image.height / 2,
@@ -29,6 +32,7 @@ module Ruby
           end
 
           def collide(entity)
+            # TODO: move 'is consumed' testing to proper Consumable class/mixin
             return if consumed
             collides = entity.collide_circle(self) rescue false
             on_collision(entity) if collides
@@ -40,7 +44,7 @@ module Ruby
           end
 
           def on_consumption_effects
-            { speed: +0.5 }
+            { speed: +0.1 }
           end
         end
       end
