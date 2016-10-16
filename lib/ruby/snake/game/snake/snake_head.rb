@@ -51,8 +51,8 @@ module Ruby
       def draw
         # TODO: move image's loading to a proper loader
         @@head_image.draw_rot(
-          @pos_x - @@head_image.width / 2,
-          @pos_y - @@head_image.height / 2,
+          @pos_x,
+          @pos_y,
           0, @rotation
         )
       end
