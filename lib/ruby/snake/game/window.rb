@@ -2,6 +2,7 @@ require 'gosu'
 
 require 'ruby/snake/game/snake_entity'
 require 'ruby/snake/game/delta_time'
+require 'ruby/snake/game/consumable/bonuses/cherry'
 module Ruby
   module Snake
     module Game
@@ -16,15 +17,18 @@ module Ruby
             angle: 180,
             torsion_angle: 4.5
           )
+          @cherry = Bonuses::Cherry.new(200, 200)
         end
 
         def update
           Game::Time.update Gosu.milliseconds
           @snake.update
+          @cherry.collide @snake
         end
 
         def draw
           @snake.draw
+          @cherry.draw
         end
       end
     end
