@@ -7,6 +7,7 @@ module Ruby
     # Snake head is an angle based entity,
     # that handles player input and draws itself
     class SnakeHead < Game::AngleBasedEntity
+      @@head_image = Helper::Resource.load('res/snake-head.bmp')
       def update
         handle_keyboard
         super
@@ -14,8 +15,7 @@ module Ruby
 
       def draw
         # TODO: move image's loading to a proper loader
-        @head ||= Helper::Resource.load('res/snake-head.bmp')
-        @head.draw_rot(@pos_x, @pos_y, 0, @rotation)
+        @@head_image.draw_rot(@pos_x, @pos_y, 0, @rotation)
       end
 
       def handle_keyboard
