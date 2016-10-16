@@ -1,12 +1,12 @@
 require 'gosu'
-require 'ruby/snake/game/entity'
+require 'ruby/snake/game/moving_entity'
 
 module Ruby
   module Snake
     module Game
       # AngleBasedEntity is a GameEntity designed
       # for angle+length based movement
-      class AngleBasedEntity < Game::Entity
+      class AngleBasedEntity < Game::MovingEntity
         attr_accessor :speed
         attr_accessor :torsion_angle
 
