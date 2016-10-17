@@ -4,6 +4,8 @@ require 'ruby/snake/game/snake_entity'
 require 'ruby/snake/game/delta_time'
 require 'ruby/snake/game/consumable/bonuses/cherry'
 require 'ruby/snake/game/consumable/container'
+require 'ruby/snake/game/tiles/drawer'
+
 module Ruby
   module Snake
     module Game
@@ -12,14 +14,27 @@ module Ruby
         def initialize
           super(640 * 2, 480 * 2)
           self.caption = 'Snake game'
-          @ambient = Gosu::Song.new 'res/ambient.wav'
+
+          play_ambient
+          create_snake
+
+          @tiles = Ruby::Snake::Game::Tiles::Drawer.new
+          @consumables = Ruby::Snake::Game::Consumable::Container.new
+        end
+
+        def play_ambient
+          @ambient ||= Gosu::Song.new 'res/ambient.wav'
           @ambient.volume = 0.3
           @ambient.play true
-          @snake = SnakeHead.new(
-            pos: [100, 100], speed: 0.5,
-            angle: 180, torsion_angle: 4.5
+        end
+
+        def create_snake
+          @snake ||= SnakeEntity.new(
+            pos: [100, 100],
+            speed: 0.5,
+            angle: 180,
+            torsion_angle: 4.5
           )
-          @consumables = Snake::Game::Consumable::Container.new
         end
 
         def update
@@ -37,6 +52,7 @@ module Ruby
         def draw
           @snake.draw
           @consumables.draw
+          @tiles.draw(width, height)
         end
       end
     end
