@@ -3,8 +3,8 @@
 require 'rubygems'
 require 'gosu'
 
-require "bundler/setup"
-require "ruby/snake"
-require "ruby/snake/game"
+require 'bundler/setup'
+require 'ruby/snake'
+require 'ruby/snake/game'
 
 Ruby::Snake::GameApp.new.start
