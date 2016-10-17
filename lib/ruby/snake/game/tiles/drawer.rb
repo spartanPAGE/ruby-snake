@@ -10,15 +10,37 @@ module Ruby
           @@ground = Helper::Resource.load('res/ground.jpg')
 
           def draw(camera)
-            off = offset(camera.focus)
-            (-g.height).step(camera.viewport[1] + g.height, g.height) do |y|
-              (-g.width).step(camera.viewport[0] + g.width, g.width) do |x|
-                g.draw(*with_offset(x, y, off), @@ground_zorder)
+            y_axis(camera) do |y|
+              x_axis(camera) do |x|
+                g.draw(
+                  *with_offset(x * g.width, y * g.height, offset(camera.focus)),
+                  @@ground_zorder
+                )
               end
             end
           end
 
           private
+
+          def y_axis(camera)
+            block_height(camera.viewport).downto(-1) do |y|
+              yield y
+            end
+          end
+
+          def x_axis(camera)
+            block_width(camera.viewport).downto(-1) do |x|
+              yield x
+            end
+          end
+
+          def block_height(vp)
+            1 + vp[1] / g.height
+          end
+
+          def block_width(vp)
+            1 + vp[0] / g.width
+          end
 
           def with_offset(x, y, off)
             [x - off[0], y - off[1]]
