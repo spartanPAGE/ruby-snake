@@ -48,6 +48,10 @@ module Ruby
             super(*args)
           end
 
+          def zorder
+            1
+          end
+
           def update(delta_time = -> { Game::Time.delta })
             handle_keyboard
             super delta_time
