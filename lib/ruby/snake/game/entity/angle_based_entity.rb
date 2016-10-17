@@ -18,16 +18,17 @@ module Ruby
         end
 
         def turn_left
-          @rotation -= @torsion_angle
+          @rotation_vel -= @torsion_angle
         end
 
         def turn_right
-          @rotation += @torsion_angle
+          @rotation_vel += @torsion_angle
         end
 
         def update(delta_time = -> { Game::Time.delta })
           update_movement_velocity
           super delta_time
+          @rotation_vel = 0
         end
 
         def update_movement_velocity
