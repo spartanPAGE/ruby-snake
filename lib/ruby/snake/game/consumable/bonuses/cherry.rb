@@ -40,7 +40,7 @@ module Ruby
 
           def on_consumption_effects
             @@sound.play
-            { speed: +0.1, grow: true }
+            { speed: +0.001, grow: true }
           end
         end
       end
