@@ -31,7 +31,7 @@ module Ruby
         def create_snake
           @snake ||= SnakeEntity.new(
             pos: [100, 100],
-            speed: 0.5,
+            speed: 0.3,
             angle: 180,
             torsion_angle: 4.5
           )
@@ -46,7 +46,7 @@ module Ruby
           @consumables.add Bonuses::Cherry.new(
             rand(0..width),
             rand(0..height)
-          ) if (Gosu.milliseconds % 100).zero?
+          ) if (Gosu.milliseconds % 10).zero?
         end
 
         def draw
