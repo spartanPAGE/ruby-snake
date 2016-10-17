@@ -18,6 +18,10 @@ module Ruby
         def pos
           Vector[@pos_x, @pos_y]
         end
+
+        def pos=(vec)
+          @pos_x, @pos_y = *vec
+        end
       end
     end
   end
