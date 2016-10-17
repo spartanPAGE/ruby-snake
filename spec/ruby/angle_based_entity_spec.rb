@@ -25,16 +25,16 @@ describe Ruby::Snake::Game::AngleBasedEntity do
 
     it 'can rotate left using torsion_angle' do
       entity.turn_left
-      expect(entity.rotation).to eq(0)
+      expect(entity.rotation_vel).to eq(-5)
       entity.turn_left
-      expect(entity.rotation).to eq(-5)
+      expect(entity.rotation_vel).to eq(-10)
     end
 
     it 'can rotate right using torsion_angle' do
       entity.turn_right
-      expect(entity.rotation).to eq(10)
+      expect(entity.rotation_vel).to eq(5)
       entity.turn_right
-      expect(entity.rotation).to eq(15)
+      expect(entity.rotation_vel).to eq(10)
     end
 
     it 'can update its velocity using rotation and speed' do
