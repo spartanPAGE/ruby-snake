@@ -35,7 +35,7 @@ module Ruby
             pos: [100, 100],
             speed: 0.3,
             angle: 180,
-            torsion_angle: 4.5
+            torsion_angle: 0.4
           )
         end
 
