@@ -12,11 +12,12 @@ module Ruby
         def initialize
           super(640 * 2, 480 * 2)
           self.caption = 'Snake game'
+          @ambient = Gosu::Song.new 'res/ambient.wav'
+          @ambient.volume = 0.3
+          @ambient.play true
           @snake = SnakeHead.new(
-            pos: [100, 100],
-            speed: 0.5,
-            angle: 180,
-            torsion_angle: 4.5
+            pos: [100, 100], speed: 0.5,
+            angle: 180, torsion_angle: 4.5
           )
           @consumables = Snake::Game::Consumable::Container.new
         end
