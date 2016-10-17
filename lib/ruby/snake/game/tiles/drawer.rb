@@ -12,15 +12,27 @@ module Ruby
           def draw(camera)
             y_axis(camera) do |y|
               x_axis(camera) do |x|
-                g.draw(
-                  *with_offset(x * g.width, y * g.height, offset(camera.focus)),
-                  @@ground_zorder
-                )
+                draw_(x, y, camera)
               end
             end
           end
 
           private
+
+          def draw_(x, y, camera)
+            g.draw(
+              *with_offset(
+                fixed_value(x, g.width),
+                fixed_value(y, g.height),
+                offset(camera.focus)
+              ),
+              @@ground_zorder
+            )
+          end
+
+          def fixed_value(axis, block_axis)
+            axis * block_axis - axis % block_axis
+          end
 
           def y_axis(camera)
             block_height(camera.viewport).downto(-1) do |y|
@@ -35,11 +47,11 @@ module Ruby
           end
 
           def block_height(vp)
-            1 + vp[1] / g.height
+            (1 + vp[1] / g.height).floor
           end
 
           def block_width(vp)
-            1 + vp[0] / g.width
+            (1 + vp[0] / g.width).floor
           end
 
           def with_offset(x, y, off)

@@ -18,8 +18,8 @@ module Ruby
 
         def transformation_vector
           Vector[
-            -@focus[0] + @viewport[0] / 2,
-            -@focus[1] + @viewport[1] / 2
+            (-@focus[0] + @viewport[0] / 2).floor,
+            (-@focus[1] + @viewport[1] / 2).floor
           ]
         end
 
