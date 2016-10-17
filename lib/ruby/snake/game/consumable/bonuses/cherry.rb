@@ -12,6 +12,7 @@ module Ruby
         class Cherry < Game::Entity
           # TODO: get this resource from some kind of resource container
           @@image = Helper::Resource.load('res/cherry.bmp')
+          @@sound = Helper::Resource.load('res/suck-up.wav')
 
           include Game::Collision::Circle
           include Game::Consumable::Consumable
@@ -38,6 +39,7 @@ module Ruby
           end
 
           def on_consumption_effects
+            @@sound.play
             { speed: +0.1 }
           end
         end
