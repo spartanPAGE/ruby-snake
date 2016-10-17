@@ -23,8 +23,10 @@ module Ruby
             end
           end
 
-          def draw
-            @consumables.each(&:draw)
+          def draw(camera)
+            @consumables.each do |consumable|
+              consumable.draw camera
+            end
           end
 
           private

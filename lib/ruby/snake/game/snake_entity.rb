@@ -1,5 +1,6 @@
 require 'ruby/snake/game/snake/snake_head'
 require 'ruby/snake/game/snake/snake_head'
+require 'matrix'
 
 module Ruby
   module Snake
@@ -19,6 +20,10 @@ module Ruby
           @head.update delta_time
         end
 
+        def pos
+          Vector[@head.pos_x, @head.pos_y]
+        end
+
         def refresh_segments
           offset = Snake::SnakeSegment.offset
           dx = @head.pos_x - Gosu.offset_x(@head.rotation, offset)
@@ -32,10 +37,12 @@ module Ruby
           @segments.unshift(seg)
         end
 
-        def draw
-          @head.draw
+        def draw(camera)
+          @head.draw camera
 
-          @segments.reverse_each(&:draw)
+          @segments.reverse_each do |seg|
+            seg.draw camera
+          end
         end
 
         def collide_circle(entity)

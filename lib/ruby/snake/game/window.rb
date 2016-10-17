@@ -5,6 +5,7 @@ require 'ruby/snake/game/delta_time'
 require 'ruby/snake/game/consumable/bonuses/cherry'
 require 'ruby/snake/game/consumable/container'
 require 'ruby/snake/game/tiles/drawer'
+require 'ruby/snake/game/camera/camera'
 
 module Ruby
   module Snake
@@ -20,6 +21,7 @@ module Ruby
 
           @tiles = Ruby::Snake::Game::Tiles::Drawer.new
           @consumables = Ruby::Snake::Game::Consumable::Container.new
+          @camera = Ruby::Snake::Game::Camera.new [width, height]
         end
 
         def play_ambient
@@ -50,9 +52,11 @@ module Ruby
         end
 
         def draw
-          @snake.draw
-          @consumables.draw
-          @tiles.draw(width, height)
+          @camera.look_at @snake.pos
+
+          @snake.draw @camera
+          @consumables.draw @camera
+          @tiles.draw @camera
         end
       end
     end

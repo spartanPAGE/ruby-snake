@@ -21,11 +21,10 @@ module Ruby
             @@offset
           end
 
-          def draw
+          def draw(camera)
             # TODO: move image's loading to a proper loader
             image.draw_rot(
-              @pos_x,
-              @pos_y,
+              *camera.translate(pos),
               zorder, @rotation
             )
           end

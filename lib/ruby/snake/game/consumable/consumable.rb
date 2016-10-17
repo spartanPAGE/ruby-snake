@@ -10,7 +10,7 @@ module Ruby
             @consumed
           end
 
-          def draw
+          def draw(*)
             yield unless consumed?
           end
 

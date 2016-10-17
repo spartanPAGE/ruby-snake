@@ -1,3 +1,5 @@
+require 'matrix'
+
 module Ruby
   module Snake
     module Game
@@ -11,6 +13,10 @@ module Ruby
           @pos_x = pos[0]
           @pos_y = pos[1]
           @rotation = rotation
+        end
+
+        def pos
+          Vector[@pos_x, @pos_y]
         end
       end
     end

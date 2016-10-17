@@ -2,6 +2,7 @@ require 'ruby/helper/resources/loader'
 require 'ruby/snake/game/entity/entity'
 require 'ruby/snake/game/collision/circle'
 require 'ruby/snake/game/consumable/consumable'
+require 'matrix'
 
 module Ruby
   module Snake
@@ -23,14 +24,10 @@ module Ruby
             super pos: [pos_x, pos_y]
           end
 
-          def draw
+          def draw(camera)
             super do
               # TODO: extract mixin for centered image drawing
-              @@image.draw(
-                @pos_x - @@image.width / 2,
-                @pos_y - @@image.height / 2,
-                -1
-              )
+              @@image.draw(*camera.translate(centered_pos), -1)
             end
           end
 
@@ -41,6 +38,15 @@ module Ruby
           def on_consumption_effects
             @@sound.play
             { speed: +0.001, grow: true }
+          end
+
+          private
+
+          def centered_pos
+            Vector[
+              @pos_x - @@image.width / 2,
+              @pos_y - @@image.height / 2
+            ]
           end
         end
       end
