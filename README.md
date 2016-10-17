@@ -4,6 +4,8 @@
 This repo contains code for my ruby's snake implementation using the Gosu library.
 That project was made for educational purposes.
 
+![screenshot](screenshots/1.png)
+
 ## Installation
 
 Add this line to your application's Gemfile:
