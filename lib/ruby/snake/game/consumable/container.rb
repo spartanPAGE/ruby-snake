@@ -16,8 +16,6 @@ module Ruby
           end
 
           def collide(entity)
-            filter_consumables
-
             @consumables.each do |consumable|
               consumable.collide entity
             end
@@ -29,10 +27,14 @@ module Ruby
             end
           end
 
-          private
+          def filter
+            @consumables.compact!
+            @consumables.reject!(&:consumed?)
+          end
 
-          def filter_consumables
-            @consumables.reject!(&:consumed)
+          def filter_and_collide(entity)
+            filter
+            collide entity
           end
         end
       end

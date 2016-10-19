@@ -42,7 +42,8 @@ module Ruby
         def update
           Game::Time.update Gosu.milliseconds
           @snake.update
-          @consumables.collide @snake
+
+          @consumables.filter_and_collide @snake
 
           # TODO: create specialized class for bonuses spawning
           @consumables.add Bonuses::Cherry.new(
