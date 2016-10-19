@@ -3,6 +3,8 @@ require 'gosu'
 require 'ruby/snake/game/snake_entity'
 require 'ruby/snake/game/delta_time'
 require 'ruby/snake/game/consumable/bonuses/cherry'
+require 'ruby/snake/game/consumable/bonuses/plum'
+require 'ruby/snake/game/consumable/bonuses/spawner'
 require 'ruby/snake/game/consumable/container'
 require 'ruby/snake/game/tiles/drawer'
 require 'ruby/snake/game/camera/camera'
@@ -16,12 +18,13 @@ module Ruby
           super(640 * 2, 480 * 2)
           self.caption = 'Snake game'
 
-          play_ambient
-          create_snake
-
           @tiles = Ruby::Snake::Game::Tiles::Drawer.new
           @consumables = Ruby::Snake::Game::Consumable::Container.new
           @camera = Ruby::Snake::Game::Camera.new [width, height]
+
+          play_ambient
+          create_snake
+          create_bonuses_spawner
         end
 
         def play_ambient
@@ -39,17 +42,19 @@ module Ruby
           )
         end
 
+        def create_bonuses_spawner
+          @bonuses_spawner ||= Bonuses::Spawner.new(
+            { Bonuses::Plum => 10,
+              Bonuses::Cherry => 25 },
+            -> (bonus) { @consumables.add(bonus) }
+          )
+        end
+
         def update
           Game::Time.update Gosu.milliseconds
+          @bonuses_spawner.update(0, 0, width, height, Gosu.milliseconds)
           @snake.update
-
           @consumables.filter_and_collide @snake
-
-          # TODO: create specialized class for bonuses spawning
-          @consumables.add Bonuses::Cherry.new(
-            rand(0..width),
-            rand(0..height)
-          ) if (Gosu.milliseconds % 10).zero?
         end
 
         def draw
