@@ -6,6 +6,10 @@ module Ruby
         module Consumable
           attr_reader :consumed
 
+          def initialize
+            @consumed = false
+          end
+
           def consumed?
             @consumed
           end
@@ -22,7 +26,7 @@ module Ruby
 
           def on_collision(entity)
             @consumed = true
-            entity.apply(on_consumption_effects)
+            entity.apply(on_consumption_effects) if defined? entity.apply
           end
 
           def on_consumption_effects; end
