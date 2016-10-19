@@ -4,6 +4,7 @@ require 'ruby/snake/game/snake_entity'
 require 'ruby/snake/game/delta_time'
 require 'ruby/snake/game/consumable/bonuses/cherry'
 require 'ruby/snake/game/consumable/bonuses/plum'
+require 'ruby/snake/game/consumable/bonuses/melon'
 require 'ruby/snake/game/consumable/bonuses/spawner'
 require 'ruby/snake/game/consumable/container'
 require 'ruby/snake/game/tiles/drawer'
@@ -45,7 +46,8 @@ module Ruby
         def create_bonuses_spawner
           @bonuses_spawner ||= Bonuses::Spawner.new(
             { Bonuses::Plum => 10,
-              Bonuses::Cherry => 25 },
+              Bonuses::Cherry => 25,
+              Bonuses::Melon => 40 },
             -> (bonus) { @consumables.add(bonus) }
           )
         end
