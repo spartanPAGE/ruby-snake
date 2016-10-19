@@ -8,7 +8,7 @@ class Consumable
   def initialize
     @draw_called = false
     @collide_called = false
-    super
+    @consumed = false
   end
 
   def draw
@@ -17,6 +17,10 @@ class Consumable
 
   def collide
     super(nil) { @collide_called = true }
+  end
+
+  def consumed?
+    @consumed
   end
 
   def consume

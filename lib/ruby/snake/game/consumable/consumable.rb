@@ -4,16 +4,6 @@ module Ruby
       module Consumable
         # Consumable mixin with being-consumed-related methods
         module Consumable
-          attr_reader :consumed
-
-          def initialize
-            @consumed = false
-          end
-
-          def consumed?
-            @consumed
-          end
-
           def draw(*)
             yield unless consumed?
           end
@@ -25,7 +15,7 @@ module Ruby
           end
 
           def on_collision(entity)
-            @consumed = true
+            consume
             entity.apply(on_consumption_effects) if defined? entity.apply
           end
 

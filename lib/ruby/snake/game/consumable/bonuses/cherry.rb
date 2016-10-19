@@ -24,6 +24,14 @@ module Ruby
             super pos: [pos_x, pos_y]
           end
 
+          def consumed?
+            @consumed
+          end
+
+          def consume
+            @consumed = true
+          end
+
           def draw(camera)
             super do
               # TODO: extract mixin for centered image drawing
