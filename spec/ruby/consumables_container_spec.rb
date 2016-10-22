@@ -20,6 +20,17 @@ class CollidableConsumableMock
   end
 end
 
+class DrawableConsumableMock
+  attr_reader :draw_called
+  def draw(*)
+    @draw_called = true
+  end
+
+  def consumed?
+    false
+  end
+end
+
 describe Ruby::Snake::Game::Consumable::Container do
   let(:container) { Ruby::Snake::Game::Consumable::Container.new }
   describe '#new' do
@@ -52,6 +63,16 @@ describe Ruby::Snake::Game::Consumable::Container do
 
       container.consumables.each do |consumable|
         expect(consumable.collide_called).to eq(true)
+      end
+    end
+  end
+
+  describe '#draw' do
+    specify 'calls #draw on every consumable' do
+      5.times { container.add DrawableConsumableMock.new }
+      container.draw nil
+      container.consumables.each do |consumable|
+        expect(consumable.draw_called).to eq(true)
       end
     end
   end
